@@ -21,7 +21,7 @@ Lava flows like a normal fluid similarly to water but destroys and erases anythi
 - Press L Key to choose lava particles
 
 ### Installation
-1. Visit the [releases page]() to find a list of all the releases.
+1. Visit the [releases page](https://github.com/BooleanCube/falling-sand-sim/releases) to find a list of all the releases.
 2. Download the `jar` file in the list of downloadable assets in the latest release.
 3. If you are on linux, you have to give execution permission to the downloaded `jar` file before executing the `jar` file. You can run the `jar` file and boot the application by running these commands:
 ```shell
