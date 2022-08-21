@@ -25,12 +25,12 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
 
     public static ParticleType currentType;
 
-    public static ScheduledThreadPoolExecutor thread = new ScheduledThreadPoolExecutor(1);
+    public static ScheduledThreadPoolExecutor thread = new ScheduledThreadPoolExecutor(8);
 
     public static void main(String[] args) {
         new Frame();
         Runnable update = () -> map.update();
-        thread.scheduleAtFixedRate(update, 0, 1, TimeUnit.MICROSECONDS);
+        thread.scheduleAtFixedRate(() -> SwingUtilities.invokeLater(update), 0, 1, TimeUnit.MICROSECONDS);
     }
 
     public Frame() {
@@ -55,6 +55,8 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
 
         this.revalidate();
         this.repaint();
+
+        thread.setCorePoolSize(8);
     }
 
     public void paintComponent(Graphics g) {
