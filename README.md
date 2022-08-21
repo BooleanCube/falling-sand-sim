@@ -25,7 +25,7 @@ Lava flows like a normal fluid similarly to water but destroys and erases anythi
 2. Download the `jar` file in the list of downloadable assets in the latest release.
 3. If you are on linux, you have to give execution permission to the downloaded `jar` file before executing the `jar` file. You can run the `jar` file and boot the application by running these commands:
 ```shell
-$ chmod -x path/to/jar/fallingsandsim.jar #This converts the `jar` file in an executable `jar` file (only for linux).
+$ chmod -x path/to/jar/fallingsandsim.jar #This makes the `jar` file executable (only for linux).
 $ java -jar path/to/jar/fallingsandsim.jar
 ```
 
