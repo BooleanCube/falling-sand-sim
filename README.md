@@ -5,7 +5,7 @@
 
 There are many types of particles in this project symbolized by the different colored pixels:
 - Sand (YELLOW - RGB(194, 178, 128))
-- Wwater (AQUA - RGB(101, 187, 199))
+- Water (AQUA - RGB(101, 187, 199))
 - Rock (BLACK - RGB(45, 44, 44))
 - Lava (RED - RGB(207, 16, 32))
 
