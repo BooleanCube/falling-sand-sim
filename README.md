@@ -5,7 +5,7 @@
 
 There are many types of particles in this project symbolized by the different colored pixels:
 - Sand (YELLOW - RGB(194, 178, 128))
-- Wwater (AQUA - RGB(101, 187, 199))
+- Water (AQUA - RGB(101, 187, 199))
 - Rock (BLACK - RGB(45, 44, 44))
 - Lava (RED - RGB(207, 16, 32))
 
@@ -21,7 +21,7 @@ Lava flows like a normal fluid similarly to water but destroys and erases anythi
 - Press L Key to choose lava particles
 
 ### Installation
-*NOTE: You need to be running Java 17 or higher to be able to run the `.jar` file.*
+*NOTE: You need to be running Java 11 or higher to be able to run the `.jar` file.*
 
 1. Visit the [releases page](https://github.com/BooleanCube/falling-sand-sim/releases) to find a list of all the releases.
 2. Download the `jar` file in the list of downloadable assets in the latest release.
