@@ -11,6 +11,7 @@ public class EmptyParticle extends Particle {
         // Block type specific members
         this.type = ParticleType.EMPTY;
         this.velocity = 0;
+        this.gravity = 0;
         this.color = new Color(55, 55, 55);
     }
 

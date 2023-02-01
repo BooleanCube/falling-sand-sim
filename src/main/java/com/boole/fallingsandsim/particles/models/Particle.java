@@ -10,6 +10,7 @@ public class Particle {
     // Block type specific members
     public ParticleType type;
     public int velocity;
+    public int gravity;
     public Color color;
 
     public void updateBlock(Particle[][] map, int x, int y) {

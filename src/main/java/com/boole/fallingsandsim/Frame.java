@@ -21,16 +21,16 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
     final int width = 1200;
     final int height = 800;
 
-    final int r = 9;
+    final int r = 15;
 
     public static ParticleType currentType;
 
-    public static ScheduledThreadPoolExecutor thread = new ScheduledThreadPoolExecutor(8);
+    public static ScheduledThreadPoolExecutor thread = new ScheduledThreadPoolExecutor(1);
 
     public static void main(String[] args) {
         new Frame();
         Runnable update = () -> map.update();
-        thread.scheduleAtFixedRate(() -> SwingUtilities.invokeLater(update), 0, 1, TimeUnit.MICROSECONDS);
+        thread.scheduleAtFixedRate(update, 0, 1, TimeUnit.MICROSECONDS);
     }
 
     public Frame() {
@@ -55,8 +55,6 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
 
         this.revalidate();
         this.repaint();
-
-        thread.setCorePoolSize(8);
     }
 
     public void paintComponent(Graphics g) {
@@ -77,6 +75,8 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
         int y = mouseEvent.getY();
         for(int i=Math.max(0, y-r); i<Math.min(height, y+r); i++)
             for(int j=Math.max(0, x-r); j<Math.min(width, x+r); j++) {
+                float distance = (float)Math.sqrt(Math.pow(y-i,2)+Math.pow(x-j,2));
+                if(distance>r || Math.random()<0.3) continue;
                 if(currentType == ParticleType.SAND) map.set(i, j, new SandParticle());
                 if(currentType == ParticleType.WATER) map.set(i, j, new WaterParticle());
                 if(currentType == ParticleType.ROCK) map.set(i, j, new RockParticle());
@@ -96,6 +96,8 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
         int y = mouseEvent.getY();
         for(int i=Math.max(0, y-r); i<Math.min(height, y+r); i++)
             for(int j=Math.max(0, x-r); j<Math.min(width, x+r); j++) {
+                float distance = (float)Math.sqrt(Math.pow(y-i,2)+Math.pow(x-j,2));
+                if(distance>r || Math.random()<0.3) continue;
                 if(currentType == ParticleType.SAND) map.set(i, j, new SandParticle());
                 if(currentType == ParticleType.WATER) map.set(i, j, new WaterParticle());
                 if(currentType == ParticleType.ROCK) map.set(i, j, new RockParticle());
@@ -132,9 +134,9 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         if(keyEvent.getKeyCode() == KeyEvent.VK_S) currentType = ParticleType.SAND;
-        if(keyEvent.getKeyCode() == KeyEvent.VK_W) currentType = ParticleType.WATER;
-        if(keyEvent.getKeyCode() == KeyEvent.VK_R) currentType = ParticleType.ROCK;
-        if(keyEvent.getKeyCode() == KeyEvent.VK_L) currentType = ParticleType.LAVA;
+        else if(keyEvent.getKeyCode() == KeyEvent.VK_W) currentType = ParticleType.WATER;
+        else if(keyEvent.getKeyCode() == KeyEvent.VK_R) currentType = ParticleType.ROCK;
+        else if(keyEvent.getKeyCode() == KeyEvent.VK_L) currentType = ParticleType.LAVA;
     }
 
     @Override
