@@ -25,11 +25,7 @@ public class WaterParticle extends Particle {
             int direction = Math.random()<0.5d ? 1 : -1;
             for(int i=velocity; i>=1; i--) {
                 int ny = y+i*direction;
-                if(x<map.length-1 && ny>=0 && map[x+gravity][ny].isEmpty()) {
-                    map[x+gravity][ny] = current;
-                    map[x][y] = new EmptyParticle();
-                    break;
-                } else if(x<map.length-1 && y<map[0].length-1 && map[x+gravity][ny].isEmpty()) {
+                if(x<map.length-1 && ny>=0 && ny<map[0].length && map[x+gravity][ny].isEmpty()) {
                     map[x+gravity][ny] = current;
                     map[x][y] = new EmptyParticle();
                     break;

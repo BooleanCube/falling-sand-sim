@@ -13,7 +13,7 @@ import java.awt.event.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class Frame extends JPanel implements MouseMotionListener, MouseListener, KeyListener {
+public class Frame extends JPanel implements MouseMotionListener, MouseListener, MouseWheelListener, KeyListener {
 
     public static JFrame window;
     static Map map;
@@ -21,7 +21,7 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
     final int width = 1200;
     final int height = 800;
 
-    final int r = 15;
+    int radius = 15;
 
     public static ParticleType currentType;
 
@@ -36,6 +36,7 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
     public Frame() {
         addMouseMotionListener(this);
         addMouseListener(this);
+        addMouseWheelListener(this);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -73,10 +74,10 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
     public void mouseDragged(MouseEvent mouseEvent) {
         int x = mouseEvent.getX();
         int y = mouseEvent.getY();
-        for(int i=Math.max(0, y-r); i<Math.min(height, y+r); i++)
-            for(int j=Math.max(0, x-r); j<Math.min(width, x+r); j++) {
+        for(int i = Math.max(0, y- radius); i<Math.min(height, y+ radius); i++)
+            for(int j = Math.max(0, x- radius); j<Math.min(width, x+ radius); j++) {
                 float distance = (float)Math.sqrt(Math.pow(y-i,2)+Math.pow(x-j,2));
-                if(distance>r || Math.random()<0.3) continue;
+                if(distance> radius || Math.random()<0.3) continue;
                 if(currentType == ParticleType.SAND) map.set(i, j, new SandParticle());
                 if(currentType == ParticleType.WATER) map.set(i, j, new WaterParticle());
                 if(currentType == ParticleType.ROCK) map.set(i, j, new RockParticle());
@@ -94,10 +95,10 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
     public void mouseClicked(MouseEvent mouseEvent) {
         int x = mouseEvent.getX();
         int y = mouseEvent.getY();
-        for(int i=Math.max(0, y-r); i<Math.min(height, y+r); i++)
-            for(int j=Math.max(0, x-r); j<Math.min(width, x+r); j++) {
+        for(int i = Math.max(0, y- radius); i<Math.min(height, y+ radius); i++)
+            for(int j = Math.max(0, x- radius); j<Math.min(width, x+ radius); j++) {
                 float distance = (float)Math.sqrt(Math.pow(y-i,2)+Math.pow(x-j,2));
-                if(distance>r || Math.random()<0.3) continue;
+                if(distance> radius || Math.random()<0.3) continue;
                 if(currentType == ParticleType.SAND) map.set(i, j, new SandParticle());
                 if(currentType == ParticleType.WATER) map.set(i, j, new WaterParticle());
                 if(currentType == ParticleType.ROCK) map.set(i, j, new RockParticle());
@@ -144,4 +145,11 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
 
     }
 
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        int direction = -e.getWheelRotation();
+        int amt = e.getScrollAmount();
+        this.radius += direction*amt;
+        this.radius = Math.max(1, this.radius);
+    }
 }
