@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class Frame extends JPanel implements MouseMotionListener, MouseListener, MouseWheelListener, KeyListener {
 
     public static JFrame window;
+    public static Graphics2D graphics;
     static Map map;
 
     final int width = 1200;
@@ -53,6 +54,13 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
 
         map = new Map(width, height);
         currentType = ParticleType.SAND;
+
+        graphics = (Graphics2D) window.getGraphics();
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
+        graphics.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+        graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        graphics.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+        graphics.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
 
         this.revalidate();
         this.repaint();
@@ -152,4 +160,5 @@ public class Frame extends JPanel implements MouseMotionListener, MouseListener,
         this.radius += direction*amt;
         this.radius = Math.max(1, this.radius);
     }
+
 }

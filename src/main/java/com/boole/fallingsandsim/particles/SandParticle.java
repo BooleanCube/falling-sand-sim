@@ -26,15 +26,19 @@ public class SandParticle extends Particle {
             Particle p = map[x+gravity][y];
             boolean flag = false;
             for(int i=1; i<map.length; i++) {
+                if(map[x-1][y-i].isLiquid() || map[x-1][y+i].isLiquid()) {
+                    break;
+                }
                 if(y+i<map.length && map[x-1][y+i].isEmpty()) {
+                    flag = true;
                     map[x-1][y+i] = p;
                     break;
                 } else if(y-i>-1 && map[x-1][y-i].isEmpty()) {
+                    flag = true;
                     map[x-1][y-i] = p;
                     break;
                 }
-                if(map[x-1][y-i].isLiquid() || map[x-1][y+i].isLiquid()) {
-                    flag = true;
+                if(y+i >= map.length && y-i < 0) {
                     break;
                 }
             }
@@ -53,23 +57,8 @@ public class SandParticle extends Particle {
                     break;
                 } else if(ny>=0 && ny<map[0].length && map[x+gravity][ny].isLiquid()) {
                     Particle p = map[x+gravity][ny];
-                    boolean flag = false;
-                    for(int s=1; s<map.length; s++) {
-                        if(y+s<map.length && map[x-1][y+s].isEmpty()) {
-                            map[x-1][y+s] = p;
-                            break;
-                        } else if(y-s>-1 && map[x-1][y-s].isEmpty()) {
-                            map[x-1][y-s] = p;
-                            break;
-                        }
-                        if(map[x-1][y-s].isLiquid() || map[x-1][y+s].isLiquid()) {
-                            flag = true;
-                            break;
-                        }
-                    }
                     map[x+gravity][ny] = current;
-                    map[x][y] = new EmptyParticle();
-                    if(!flag) map[x][ny] = p;
+                    map[x][y] = p;
                     break;
                 }
                 else if(ny>=0 && ny<map[0].length && map[x+gravity][ny].isLava()) {
