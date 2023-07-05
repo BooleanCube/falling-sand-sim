@@ -19,6 +19,7 @@ Lava flows like a normal fluid similarly to water but destroys and erases anythi
 - Press W Key to choose water particles
 - Press R Key to choose rock particles
 - Press L Key to choose lava particles
+- Zoom in/out to change paint brush size
 
 ### Installation
 *NOTE: You need to be running Java 11 or higher to be able to run the `.jar` file.*
