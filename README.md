@@ -1,7 +1,7 @@
 # Falling Sand Simulation
 > This project is a falling sand simulation to figure out and simulate each and every pixel according to its behaviors in physics. This simple sand falling algorithm can be very useful in game development and is a very interesting theory to play around with.
 
-![FallingSandSim](https://user-images.githubusercontent.com/47650058/185774857-29b7124a-0de6-4f9f-a3a6-7bdcadff2b2e.png)
+![FallingSandSim](https://github.com/BooleanCube/falling-sand-sim/assets/47650058/fc28d330-5834-4510-96fe-267ef9d3a987)
 
 There are many types of particles in this project symbolized by the different colored pixels:
 - Sand (YELLOW - RGB(194, 178, 128))
